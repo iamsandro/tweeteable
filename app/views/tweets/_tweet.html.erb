@@ -1,25 +1,9 @@
-<<<<<<< HEAD
   <div class="tweet border-1">
     <% if tweet.user.avatar.attached? %>
       <%= image_tag tweet.user.avatar, class: "avatar" %>
     <% else %>
       <%= image_tag "icon/avatar.svg", class: "avatar" %>
     <% end %>
-=======
-<div id="<%= dom_id tweet %>">
-
-  <div class="">
-    <span><%=tweet.user.username%></span>
-    <span><%=tweet.body%></span>
-  </div>
-
-
-
-  <p>
-    <strong>Body:</strong>
-    <%= tweet.body %>
-  </p>
->>>>>>> 58f81f3 (Changes on tweet-view)
 
     <div id="<%= dom_id tweet %>" class="tweet__content">
       <div class="tweet__header">
