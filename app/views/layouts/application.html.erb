@@ -20,13 +20,61 @@
     
     </aside>
 
-    <body>
+    <main>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
       
-    </body>
 
 
+    </main>
+
+    <script>
+
+      var propTabs = {
+
+        primer_encabezado: document.getElementById('encabezado').firstElementChild,
+        primer_contenido: document.getElementById('contenido').firstElementChild,
+        enlaces_encabezado: document.querySelectorAll('#encabezado li a'),
+        li_encabezado: document.querySelectorAll('#encabezado li'),
+        divs_contenido: document.querySelectorAll('#contenido > div'),
+        contenido_activo: null
+
+      }
+
+var metTabs = {
+      
+      inicio: function(){
+        propTabs.primer_encabezado.className = "active"; // tweets(encabezado)
+        propTabs.primer_contenido.className = "active"; // list_tweets
+
+        for (var i = 0; i < propTabs.enlaces_encabezado.length; i++) {
+          propTabs.enlaces_encabezado[i].addEventListener("click", metTabs.evento);
+        }
+      },
+
+      evento: function(e){
+        e.preventDefault();
+
+        for (var i = 0; i < propTabs.li_encabezado.length; i++) {
+          propTabs.li_encabezado[i].className = "";
+        }
+
+        for (var i = 0; i < propTabs.divs_contenido.length; i++) {
+          propTabs.divs_contenido[i].className = "";
+        }
+
+        this.parentElement.className = "active";
+        propTabs.contenido_activo = this.getAttribute("href");
+        document.querySelector(propTabs.contenido_activo).className = "active";
+        document.querySelector(propTabs.contenido_activo).style.opacity = 0;
+        setTimeout(function(){
+          document.querySelector(propTabs.contenido_activo).style.opacity = 1;
+        }, 100);
+      }
+
+    }
+    metTabs.inicio();
+    </script>
   </body>
 </html>

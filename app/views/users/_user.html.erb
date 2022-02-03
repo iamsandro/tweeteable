@@ -1,22 +1,16 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Username:</strong>
-    <%= user.username %>
-  </p>
+<div id="<%= dom_id user %>" class="flex flex-column center-hor center-ver">
+  <% if user.avatar.attached? %>
+    <%= image_tag user.avatar, class: "perfil" %>
+  <% else %>
+    <%= image_tag "icon/avatar.svg", class: "perfil" %>
+  <% end %>
+  <h1 class="content-l"><%= user.name %></h1>
+  <h2 class="content-m color-secondary">@<%= user.username %></h2>
+  <div class="flex center-hor center-ver gap-2">
+    <%= image_tag "icon/schedule.svg"%>
+    <h3 class="content-m color-secondary">Joined on <%= user.created_at.strftime("%B %d, %Y") %></h3>
+  </div>
 
-  <p>
-    <strong>Name:</strong>
-    <%= user.name %>
-  </p>
-
-  <p>
-    <strong>Avatar:</strong>
-    <%= link_to user.avatar.filename, user.avatar if user.avatar.attached? %>
-  </p>
-
-  <p>
-    <strong>Role:</strong>
-    <%= user.role %>
-  </p>
-
+  
 </div>
+

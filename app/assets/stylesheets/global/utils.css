@@ -21,7 +21,7 @@
 }
 
 .primary-500 {
-  color: var(--primary-500);
+  color: var(--primary);
 }
 
 .gray-200 {
@@ -124,13 +124,27 @@
 .center-hor{
   justify-content: center;
 }
+
 .avatar{
   height: 50px;
   width: 50px;
   border-radius: 50%;
 }
 
+.perfil{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
 .border-1{
   border-top: 1px solid var(--secondary-text);
   border-bottom: 1px solid var(--secondary-text);
+}
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.space-btw{
+  justify-content: space-between;
 }
