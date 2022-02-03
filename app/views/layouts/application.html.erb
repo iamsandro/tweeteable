@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
 
   <body>
@@ -15,19 +16,47 @@
     <header>
     </header>
 
-    <aside>
-    
-    
-    </aside>
+    <main class="main" >
+      <aside>
+      <div>
+        <%= image_tag "img/logo.svg" %>
+      </div>
+      <div>
+        <%= image_tag "icon/tweetter_black.svg" %>
+        <%= link_to "Home", root_path %>
+      </div>
 
-    <main>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
-      
+      <% if !current_user.nil?%>
+        <div>
+          <%= image_tag "icon/avatar.svg" %>
+          <%= link_to "Profile", edit_user_registration_path %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, data: {turbo: "false"}, class: "button button--primary" %>
+        </div>
+      <% else %>
+        <%= link_to "Login", new_user_session_path  %>
+        <div data-turbo="false">
+          <%= form_with(url: user_github_omniauth_authorize_path, method: :post) do |f| %>
+            <%= f.submit "Git Hub", class: "button button--secondary"  %>
+          <% end %>
+        </div>
+        <div data-turbo="false">
+          <%= form_with(url: user_google_oauth2_omniauth_authorize_path, method: :post) do |f| %>
+            <%= f.submit "Google", class: "button button--secondary"  %>
+          <% end %>
+        </div>
+        
+        
+      <% end %>
+        
+      </aside>
 
 
-    </main>
+      <section>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </section>
+    </main> 
 
     <script>
 

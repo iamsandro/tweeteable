@@ -43,8 +43,9 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: "User was successfully destroyed."
+    # @user.destroy
+    current_user.destroy
+    redirect_to users_url, notice: "User was successfully destroyed.", status: :see_other
   end
 
   private
