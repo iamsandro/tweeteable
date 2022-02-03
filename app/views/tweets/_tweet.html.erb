@@ -1,9 +1,11 @@
   <div class="tweet border-1">
-    <% if tweet.user.avatar.attached? %>
-      <%= image_tag tweet.user.avatar, class: "avatar" %>
-    <% else %>
-      <%= image_tag "icon/avatar.svg", class: "avatar" %>
-    <% end %>
+    <div class="">
+      <% if tweet.user.avatar.attached? %>
+        <%= image_tag tweet.user.avatar, class: "avatar" %>
+      <% else %>
+        <%= image_tag "icon/avatar.svg", class: "avatar" %>
+      <% end %>
+    </div>
 
     <div id="<%= dom_id tweet %>" class="tweet__content">
       <div class="tweet__header">

@@ -140,6 +140,11 @@
   border-top: 1px solid var(--secondary-text);
   border-bottom: 1px solid var(--secondary-text);
 }
+
+.flex-end{
+  flex-direction: column;
+  align-items:flex-end;
+
 .grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -147,4 +152,5 @@
 
 .space-btw{
   justify-content: space-between;
+
 }
