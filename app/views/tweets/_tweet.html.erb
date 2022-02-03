@@ -1,22 +1,25 @@
-<div id="<%= dom_id tweet %>">
-  <p>
-    <strong>Body:</strong>
-    <%= tweet.body %>
-  </p>
+  <div class="tweet border-1">
+    <% if tweet.user.avatar.attached? %>
+      <%= image_tag tweet.user.avatar, class: "avatar" %>
+    <% else %>
+      <%= image_tag "icon/avatar.svg", class: "avatar" %>
+    <% end %>
 
-  <p>
-    <strong>Replies count:</strong>
-    <%= tweet.replies_count %>
-  </p>
+    <div id="<%= dom_id tweet %>" class="tweet__content">
+      <div class="tweet__header">
+        <h4 class="content-m bold"><%= tweet.user.name %></h4>
+        <span class="content-m color-secondary">@<%= tweet.user.username %></span>
+        <span class="content-s color-secondary"><%= time_ago_converter(time_ago_in_words(tweet.created_at)) %></span>
+      </div>
 
-  <p>
-    <strong>Likes count:</strong>
-    <%= tweet.likes_count %>
-  </p>
+      <p class="content-m color-black"><%= tweet.body %> </p>
 
-  <p>
-    <strong>User:</strong>
-    <%= tweet.user_id %>
-  </p>
+      <div class="tweet__footer">
+        <%= image_tag "icon/cloud.svg" %>
+        <span class="content-m color-secondary"><%= tweet.replies_count %></span>
+        <%= image_tag "icon/loved.svg" %>
+        <span class="content-m color-secondary"><%= tweet.likes_count %></span>
+      </div>
+    </div>
 
-</div>
+  </div>

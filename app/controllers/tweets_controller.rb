@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
+    @retweets = @tweet.retweets
   end
 
   # GET /tweets/new
@@ -46,13 +47,14 @@ class TweetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:body, :replies_count, :likes_count, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def tweet_params
+    params.require(:tweet).permit(:body, :replies_count, :likes_count, :user_id)
+  end
 end

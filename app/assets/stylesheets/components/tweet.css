@@ -1,0 +1,22 @@
+.tweet{
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.tweet__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tweet__header{
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tweet__footer{
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
