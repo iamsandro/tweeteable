@@ -21,6 +21,6 @@
 @import url("./components/footer.css");
 
 a {
-  color: var(--primary-500);
+  color: black;
   text-decoration: none;
 }

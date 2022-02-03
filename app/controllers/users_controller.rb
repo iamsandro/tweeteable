@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    likes = Like.where(user_id: current_user.id)
+    @tweets_ = likes.map(&:tweet)
   end
 
   # GET /users/new
