@@ -86,6 +86,8 @@ GEM
     digest (3.1.0)
     digest (3.1.0-java)
     erubi (1.10.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.9.1)
@@ -109,6 +111,9 @@ GEM
     minitest (5.15.0)
     msgpack (1.4.4)
     msgpack (1.4.4-java)
+    net-http (0.2.0)
+      net-protocol
+      uri
     net-imap (0.2.3)
       digest
       net-protocol
@@ -197,6 +202,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2021.5)
       tzinfo (>= 1.0.0)
+    uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -222,7 +228,9 @@ DEPENDENCIES
   bootsnap
   debug
   devise
+  faker
   importmap-rails
+  net-http
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)

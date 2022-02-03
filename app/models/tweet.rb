@@ -4,9 +4,9 @@ class Tweet < ApplicationRecord
   has_many :retweets, class_name: "Tweet",
             foreign_key: "replied_to_id",
             dependent: :destroy,
-            inverse_of: "tweet_parent"
+            inverse_of: "replied_to"
 
-  belongs_to :tweet_parent, class_name: "Tweet", counter_cache: :replies_count , optional: true
+  belongs_to :replied_to, class_name: "Tweet", counter_cache: :replies_count , optional: true
             
   has_many :likes
 
