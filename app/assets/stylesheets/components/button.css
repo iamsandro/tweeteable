@@ -110,6 +110,15 @@
   animation: spin 1s linear infinite;
 }
 
+.button--tweet {
+  width: 76px;
+  height: 40px;
+  color: white;
+  background-color: var(--primary);
+  border-radius: 100px;
+  text-transform:capitalize
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);

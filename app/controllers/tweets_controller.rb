@@ -4,6 +4,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index
     @tweets = Tweet.all
+    @tweet = Tweet.new
   end
 
   # GET /tweets/1
@@ -21,8 +22,16 @@ class TweetsController < ApplicationController
   end
 
   # POST /tweets
+  # POST /users/:user_id/tweets
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user = current_user
+    pp "######################################################"
+    pp current_user
+    pp "######################################################"
+    pp params
+
+
 
     if @tweet.save
       redirect_to @tweet, notice: "Tweet was successfully created."
