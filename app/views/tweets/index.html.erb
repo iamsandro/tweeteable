@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<div class="text-center">
+  <h1>Home</h1>
+</div>
 
-<h1>Tweets</h1>
+<div class="flex gap-2 mb-4">
+  <div class="text-center">
+    <% if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar, class: "avatar" %>
+    <% else %>
+    <%= image_tag "icon/avatar.svg", class: "avatar" %>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= form_with model: @tweet, data: { turbo: "false" }, class: "flex flex-end gap-2" do |f| %>
+      <%= f.text_area :body, cols: 70, rows: 1 ,placeholder: "Remember to thing before write..." %>
+      <%= f.submit "Tweet", class: "button button--tweet"%>
+    <%end%>
+  </div>
+</div>
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
     <%= render tweet %>
     <p>
-      <%= link_to "Show this tweet", tweet %>
+
     </p>
   <% end %>
 </div>
 
-<%= link_to "New tweet", new_tweet_path %>
+
