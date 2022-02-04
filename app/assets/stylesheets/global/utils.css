@@ -131,6 +131,10 @@
   border-radius: 50%;
 }
 
+.icon{
+  width: 20px;
+  height: 17.5px;
+}
 .perfil{
   height: 100px;
   width: 100px;
@@ -144,6 +148,7 @@
 .flex-end{
   flex-direction: column;
   align-items:flex-end;
+}
 
 .grid{
   display: grid;
@@ -159,4 +164,10 @@
   width: 260px;
   height: 160px;
   border-radius: 8px;
+
+.whithout_formate{
+  border: none;
+  background: none;
+  text-decoration: none;
+  cursor: pointer;
 }

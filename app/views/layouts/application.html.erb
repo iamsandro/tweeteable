@@ -19,10 +19,11 @@
     <main class="main" >
       <aside>
       <div>
-        <%= image_tag "img/logo.svg" %>
+        <%= link_to (image_tag "img/logo.svg"), root_path %>
       </div>
+
       <div class="flex gap-2">
-        <%= image_tag "icon/tweetter_black.svg" %>
+        <%= link_to (image_tag "icon/tweetter_black.svg"), root_path %>
         <%= link_to "Home", root_path %>
       </div>
 
