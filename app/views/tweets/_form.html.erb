@@ -13,25 +13,11 @@
 
   <div>
     <%= form.label :body, style: "display: block" %>
-    <%= form.text_field :body %>
+    <%= form.text_area :body, cols: 25, rows: 8 %>
   </div>
 
   <div>
-    <%= form.label :replies_count, style: "display: block" %>
-    <%= form.number_field :replies_count %>
+    <%= form.submit "Edit", class: "button button--tweet"%>
   </div>
 
-  <div>
-    <%= form.label :likes_count, style: "display: block" %>
-    <%= form.number_field :likes_count %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

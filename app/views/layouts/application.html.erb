@@ -21,15 +21,17 @@
       <div>
         <%= image_tag "img/logo.svg" %>
       </div>
-      <div>
+      <div class="flex gap-2">
         <%= image_tag "icon/tweetter_black.svg" %>
         <%= link_to "Home", root_path %>
       </div>
 
       <% if !current_user.nil?%>
         <div>
-          <%= image_tag "icon/avatar.svg" %>
-          <%= link_to "Profile", edit_user_registration_path %>
+          <div class="flex gap-2">
+            <%= image_tag "icon/avatar.svg" %>
+            <%= link_to "Profile", edit_user_registration_path %>
+          </div>
           <%= button_to "Logout", destroy_user_session_path, method: :delete, data: {turbo: "false"}, class: "button button--primary" %>
         </div>
       <% else %>
