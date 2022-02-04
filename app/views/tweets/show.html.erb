@@ -1,12 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<p style: "color: green"><%= notice %></p>
+
+
 
 <h1 class="content-l bold flex center-hor mb-4 mt-4">Tweet Details</h1>
 <section class="mb-4 "><%= render @tweet %> </section>
-<div class="text-center">
-    <%= form_with model: @tweet_new, data: { turbo: "false" }, class: "flex flex-end gap-2" do |f| %>
+
+<div class="flex gap-2 mb-4">
+  <div class="text-center">
+    <% if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar, class: "avatar" %>
+    <% else %>
+    <%= image_tag "icon/avatar.svg", class: "avatar" %>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= form_with model: @tweet, data: { turbo: "false" }, class: "flex flex-end gap-2" do |f| %>
       <%= f.text_area :body, cols: 70, rows: 1 ,placeholder: "Remember to thing before write..." %>
       <%= f.submit "Tweet", class: "button button--tweet"%>
     <%end%>
+  </div>
 </div>
+
 <section ><%= render @retweets %></section>
+
+<div>
+  <%# link_to "Edit this tweet", edit_tweet_path(@tweet) %>
+  <%# link_to "Back to tweets", tweets_path %>
+
+  <%# button_to "Destroy this tweet", @tweet, method: :delete %>
+</div>
 

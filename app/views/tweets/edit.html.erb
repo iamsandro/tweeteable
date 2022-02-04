@@ -1,10 +1,10 @@
-<h1>Editing tweet</h1>
+<h1>Edit tweet</h1>
 
 <%= render "form", tweet: @tweet %>
 
 <br>
 
 <div>
-  <%= link_to "Show this tweet", @tweet %> |
-  <%= link_to "Back to tweets", tweets_path %>
+  <%= button_to "Cancel" ,tweet_path(@tweet.id), method: :get %>
 </div>
+

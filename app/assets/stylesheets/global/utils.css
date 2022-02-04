@@ -160,6 +160,11 @@
 
 }
 
+.form-edit-tweet{
+  width: 260px;
+  height: 160px;
+  border-radius: 8px;
+
 .whithout_formate{
   border: none;
   background: none;
