@@ -7,8 +7,8 @@ class Tweet < ApplicationRecord
             inverse_of: "replied_to"
 
   belongs_to :replied_to, class_name: "Tweet", counter_cache: :replies_count , optional: true
-            
-  has_many :likes
+
+  has_many :likes,  dependent: :destroy
 
   # Validations
   validates :body, presence: true
