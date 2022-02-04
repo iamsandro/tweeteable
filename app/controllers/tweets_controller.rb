@@ -1,15 +1,17 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_tweet, only: %i[show edit update destroy ]
 
   # GET /tweets
   def index
-    @tweets = Tweet.all
-    @tweet = Tweet.new
+    @tweets = Tweet.all.sort_by(&:created_at).reverse!
+    @tweet_new = Tweet.new
+    @tweets_of_current_user = Like.where(user_id: current_user.id).map(&:tweet) if current_user
   end
 
   # GET /tweets/1
   def show
-    @retweets = @tweet.retweets
+    @tweet_new = Tweet.new
+    @retweets = @tweet.retweets.sort_by(&:created_at).reverse!
   end
 
   # GET /tweets/new
@@ -18,23 +20,15 @@ class TweetsController < ApplicationController
   end
 
   # GET /tweets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tweets
   # POST /users/:user_id/tweets
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
-    pp "######################################################"
-    pp current_user
-    pp "######################################################"
-    pp params
-
-
-
     if @tweet.save
-      redirect_to @tweet, notice: "Tweet was successfully created."
+      redirect_to @tweet, status: :ok
     else
       render :new, status: :unprocessable_entity
     end
@@ -52,7 +46,7 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   def destroy
     @tweet.destroy
-    redirect_to tweets_url, notice: "Tweet was successfully destroyed."
+    redirect_back_or_to root_path, notice: "Tweet was successfully destroyed.", status: :see_other
   end
 
   private
