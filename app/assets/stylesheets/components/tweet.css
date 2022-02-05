@@ -26,21 +26,22 @@
 
 .tweet__header{
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
 }
 
 .card__tweet--body .username a{
   font-weight: 700;
-  color: var(--primary-text);
+  color: var(--gray-400);
 }
 
 .card__tweet--body .name a{
-  color: var(--secondary-text);
+  color: var(--primary-300);
 }
 
 .card__tweet--body .time{
   font-size: 0.875rem;
-  color: var(--secondary-text);
+  color: var(--gray-300);
+  margin-bottom: 0.75rem;
 }
 
 .tweet__main{
@@ -54,6 +55,7 @@
   gap: 0.625rem;
   align-self: space-between;
   justify-self: flex-end;
+  margin-top: 0.75rem;
 }
 
 .form__tweet{

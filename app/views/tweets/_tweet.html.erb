@@ -9,14 +9,23 @@
 
     <div id="<%= dom_id tweet %>" class="card__tweet--body">
       <div class="tweet__header">
-        <h4 class="username"><%= link_to (tweet.user.name), user_path(tweet.user) %></h4>
-        <span class="name">@<%= link_to (tweet.user.username), user_path(tweet.user)  %></span>
-        <span class="time"><%= time_ago_converter(time_ago_in_words(tweet.created_at)) %></span>
+        <div>
+          <span class="username"><%= link_to (tweet.user.name), user_path(tweet.user) %></span>
+          <span class="name">@<%= link_to (tweet.user.username), user_path(tweet.user)  %></span>
+        </div>
+        <span class="time"><%= time_ago_in_words(tweet.created_at) %></span>
       </div>
 
       <p class="tweet_main"><%= link_to (tweet.body), tweet_path(tweet) %> </p>
 
       <div class="tweet__footer space-btw center-ver">
+        <% if policy(tweet).edit? %>
+          <div class="flex gap-2 center-ver">
+            <%=link_to (image_tag "icon/trash.svg", class: "icon"), tweet_path(tweet), data: {turbo_method: :delete} %>
+            <%=link_to (image_tag "icon/edit.svg", class: "icon"), edit_tweet_path(tweet) %>
+          </div>
+        <% end %>
+
         <div class="flex gap-2 center-ver">
           <%= image_tag "icon/cloud.svg" %>
           <span class="content-m color-secondary"><%= tweet.replies_count %></span>
@@ -27,11 +36,6 @@
             <%= button_to (image_tag "icon/loved.svg"), tweet_likes_path(tweet), class: "whithout_formate flex center" %>
             <span class="content-m color-secondary"><%= tweet.likes_count %></span>
           <% end%>
-        </div>
-
-        <div class="flex gap-2 center-ver">
-          <%=link_to (image_tag "icon/trash.svg", class: "icon"), tweet_path(tweet), data: {turbo_method: :delete} %>
-          <%=link_to (image_tag "icon/edit.svg", class: "icon"), edit_tweet_path(tweet) %>
         </div>
       </div>
     </div>

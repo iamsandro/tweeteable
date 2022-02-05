@@ -3,12 +3,14 @@
     <h1><%= link_to "Home", root_path, class:"upcase" %></h1>
   </div>
 
-  <div class="text-center pd-2 bg-white mb-4">
-    <%= form_with model: @tweet_new, data: { turbo: "false" }, class: "flex flex-end gap-2 strech" do |f| %>
-      <%= f.text_area :body, placeholder: "Remember to thing before write...", id: "text_area", class: "flex center-hor"%>
-      <%= f.submit "Tweet", class: "button button--tweet"%>
-    <%end%>
-  </div>
+  <% if user_signed_in? %>
+    <div class="text-center pd-2 bg-white mb-4">
+      <%= form_with model: @tweet_new, data: { turbo: "false" }, class: "flex flex-end gap-2 strech" do |f| %>
+        <%= f.text_area :body, placeholder: "Remember to thing before write...", id: "text_area", class: "flex center-hor"%>
+        <%= f.submit "Tweet", class: "button button--tweet"%>
+      <%end%>
+    </div>
+  <% end%>
 
   <div id="tweets">
     <%= render @tweets %>

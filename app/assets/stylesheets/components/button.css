@@ -130,3 +130,8 @@
     transform: rotate(360deg);
   }
 }
+
+hr {
+  height: 5px;
+  background-color: var(--secondary-100);
+}

@@ -1,25 +1,24 @@
-<p style: "color: green"><%= notice %></p>
+<section class="container__sm">
+  <p style: "color: green"><%= notice %></p>
+  <h1 class="content-l bold flex center-hor mb-4 mt-4">Tweet Details</h1>
+  <section class="mb-4 "><%= render @tweet %> </section>
 
-
-
-<h1 class="content-l bold flex center-hor mb-4 mt-4">Tweet Details</h1>
-<section class="mb-4 "><%= render @tweet %> </section>
-
-<div class="text-center pd-2 bg-white mb-4">
-  <%= form_with model: [@tweet, @tweet_new], method: :post, data: { turbo: "false" } do |f| %>
-    <div class="flex flex-column">
-      <%= f.text_area :body, placeholder: "Remember to thing before write...", id: "text_area"%>
-      <%= f.submit "Tweet", class: "button button--tweet align-end upcase"%>
+  <hr>
+  
+  <% if user_signed_in? %>
+    <div class="text-center pd-2 bg-white mb-4">
+      <%= form_with model: [@tweet, @tweet_new], method: :post, data: { turbo: "false" } do |f| %>
+        <div class="flex flex-column">
+          <%= f.text_area :body, placeholder: "Remember to thing before write...", id: "text_area"%>
+          <%= f.submit "Tweet", class: "button button--tweet align-end upcase"%>
+        </div>
+      <%end%>
     </div>
-  <%end%>
-</div>
+  <% end %>
 
-<section ><%= render @retweets %></section>
+  <section ><%= render @retweets %></section>
 
-<div>
-  <%# link_to "Edit this tweet", edit_tweet_path(@tweet) %>
-  <%# link_to "Back to tweets", tweets_path %>
-
-  <%# button_to "Destroy this tweet", @tweet, method: :delete %>
-</div>
-
+  <div class="flex center">
+    <% link_to "Back to tweets", tweets_path %>
+  </div>
+</section> 
