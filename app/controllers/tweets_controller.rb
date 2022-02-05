@@ -30,7 +30,7 @@ class TweetsController < ApplicationController
     @tweet.replied_to_id = params[:tweet_id] unless params[:tweet_id].nil?
 
     if @tweet.save
-      redirect_back_or_to root_path, status: :created
+      redirect_back_or_to root_path
     else
       render :new, status: :unprocessable_entity
     end
