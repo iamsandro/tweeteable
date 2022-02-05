@@ -15,7 +15,7 @@ users = User.create([
   {username: "user2", name: "User2",email: "user2@mail.com", password: "letmein"},
   {username: "user3", name: "User3",email: "user3@mail.com", password: "letmein"},
   {username: "user4", name: "User4",email: "user4@mail.com", password: "letmein"}])
-cover_url = Faker::LoremFlickr.image(size: "500x600", search_terms: ['person', 'avatar'])
+cover_url = Faker::Avatar.unique.image(slug: "my-own-slug", size: "50x50", format: "bmp", set: "set1", bgset: "bg1")
 users.each_with_index do |user, i|
   user.avatar.attach(io: URI.open(cover_url), filename: "company#{i}.jpg")
 end

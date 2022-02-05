@@ -3,13 +3,17 @@ Rails.application.routes.draw do
   resources :tweets do
     resources :likes
   end
-  resources :tweets
+  resources :tweets do
+    resources :tweets
+  end
   resources :users
 
   root to: "tweets#index"
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # <api>
+  # GWT |POST /api/article GET | PUT | DELETE
+    namespace :api do
+      resources :tweets, except: %i[new edit]
+    end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

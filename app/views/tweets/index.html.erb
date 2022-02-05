@@ -1,32 +1,20 @@
-<div class="text-center">
-  <h1><%= link_to "Home", root_path %></h1>
-</div>
-
-<div class="flex gap-2 mb-4">
-  <div class="text-center">
-    <% if current_user&.avatar&.attached? %>
-    <%= image_tag current_user.avatar, class: "avatar" %>
-    <% else %>
-    <%= image_tag "icon/avatar.svg", class: "avatar" %>
-    <% end %>
+<section class="container__sm">
+  <div class="text-center mb-4 mt-4">
+    <h1><%= link_to "Home", root_path, class:"upcase" %></h1>
   </div>
 
-  <div class="text-center">
-    <%= form_with model: @tweet_new, data: { turbo: "false" }, class: "flex flex-end gap-2" do |f| %>
-      <%= f.text_area :body, cols: 70, rows: 1 ,placeholder: "Remember to thing before write..." %>
-      <%= f.submit "Tweet", class: "button button--tweet"%>
-    <%end%>
+  <% if user_signed_in? %>
+    <div class="text-center pd-2 bg-white mb-4">
+      <%= form_with model: @tweet_new, data: { turbo: "false" }, class: "flex flex-end gap-2 strech" do |f| %>
+        <%= f.text_area :body, placeholder: "Remember to thing before write...", id: "text_area", class: "flex center-hor"%>
+        <%= f.submit "Tweet", class: "button button--tweet"%>
+      <%end%>
+    </div>
+  <% end%>
+
+  <div id="tweets">
+    <%= render @tweets %>
   </div>
-</div>
-
-<div id="tweets">
-  <%# @tweets.each do |tweet| %>
-   <%# link_to tweet_path(tweet) do %> <%# tweet/:id %>
-    <%# render tweet %>
-    <%# end %>
-  <%# end %>
-  <%= render @tweets %>
-
-</div>
+</section>
 
 

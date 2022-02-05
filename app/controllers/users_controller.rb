@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    likes = Like.where(user_id: current_user.id)
+    likes = Like.where(user_id: params[:id])
     @tweets_of_current_user = likes.map(&:tweet)
   end
 

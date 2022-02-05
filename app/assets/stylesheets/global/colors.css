@@ -53,3 +53,10 @@
 .color-black{
   color: black;
 }
+
+.gray-300{
+  color: var(--gray-300);
+}
+body{
+  background-color: var(--background3);
+}

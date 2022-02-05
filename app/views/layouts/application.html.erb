@@ -13,47 +13,49 @@
 
   <body>
 
-    <header>
-    </header>
+    <header class = "header">
 
-    <main class="main" >
-      <aside>
-      <div>
-        <%= link_to (image_tag "img/logo.svg"), root_path %>
-      </div>
-
-      <div class="flex gap-2">
-        <%= link_to (image_tag "icon/tweetter_black.svg"), root_path %>
-        <%= link_to "Home", root_path %>
-      </div>
-
-      <% if !current_user.nil?%>
-        <div>
-          <div class="flex gap-2">
-            <%= image_tag "icon/avatar.svg" %>
-            <%= link_to "Profile", edit_user_registration_path %>
+        <div class = "container navbar" >
+          <%= link_to (image_tag "img/logo.svg"), root_path %>
+          
+          <nav>
+            <ul class="navbar-links" role="list">
+              <% if user_signed_in? %>
+                <li>Welcome <%=current_user.username%></li>
+                <li><%=link_to "Thanks for using Tweetable!", "#"%></li>
+                <li><%=link_to "Edit Profile", edit_user_registration_path%></li>
+                <li>
+                  <%=button_to "Log Out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "button button--secondary button-sm" %>
+                </li>
+              <% else%>
+                <li>
+                  <div data-turbo="false">
+                    <%= form_with(url: user_github_omniauth_authorize_path, method: :post) do |f| %>
+                      <%= f.submit "Git Hub", class: "button button--secondary"  %>
+                    <% end %>
+                  </div>
+                </li>
+                <li>
+                  <div data-turbo="false">
+                    <%= form_with(url: user_google_oauth2_omniauth_authorize_path, method: :post) do |f| %>
+                      <%= f.submit "Google", class: "button button--secondary"  %>
+                    <% end %>
+                  </div>
+                </li>
+                <li><%= link_to "Sing in", new_user_session_path  %></li>
+                <li><%= link_to "Sing up", new_user_registration_path  %></li>
+              <% end %>
+            </ul>
+          </nav>
+          <div class="js-navbar-menu">
+            <%=image_tag "icon/menu.svg", class: "navbar__menu-icon"%>
+            <%=image_tag "icon/close.svg", class: "navbar__menu-icon-close"%>
           </div>
-          <%= button_to "Logout", destroy_user_session_path, method: :delete, data: {turbo: "false"}, class: "button button--primary" %>
         </div>
-      <% else %>
-        <%= link_to "Login", new_user_session_path  %>
-        <div data-turbo="false">
-          <%= form_with(url: user_github_omniauth_authorize_path, method: :post) do |f| %>
-            <%= f.submit "Git Hub", class: "button button--secondary"  %>
-          <% end %>
-        </div>
-        <div data-turbo="false">
-          <%= form_with(url: user_google_oauth2_omniauth_authorize_path, method: :post) do |f| %>
-            <%= f.submit "Google", class: "button button--secondary"  %>
-          <% end %>
-        </div>
-        
-        
-      <% end %>
-        
-      </aside>
+      </header>
 
-
+    <main class="main container__sm" >
+      
       <section>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
@@ -61,52 +63,95 @@
       </section>
     </main> 
 
-    <script>
+    <footer class="footer bg-gray-100">
+      <span>© 2021 - Codeable Tweetable</span>
+      <span>Build with &#9829; by</span>
+      <div class="footer-links-container">
+        <div class = "item_a">
+          <%=link_to "https://www.linkedin.com/in/ruben-sandro-santillan-salazar/", class: "footer-link", target: "_blank" do%>
+            <%=image_tag("icon/linkedin.svg") %>
+            <p class="footer-name">Ruben</p>
+          <%end%>
+        </div>
 
+        <div class = "item_b">
+          <%=link_to "#", class: "footer-link", target: "_blank" do%>
+            <%=image_tag("icon/linkedin.svg") %>
+            <p class="footer-name">Sandra</p>
+          <%end%>
+        </div>
+          
+        <div class = "item_c">
+          <%=link_to "#", class: "footer-link", target: "_blank" do%>
+            <%=image_tag("icon/linkedin.svg") %>
+            <p class="footer-name">Daniel</p>
+          <%end%>
+        </div>
+        
+        <div class = "item_e">
+          <%=link_to "https://www.linkedin.com", class: "footer-link", target: "_blank" do%>
+            <%=image_tag("icon/linkedin.svg") %>
+            <p class="footer-name">Sergio</p>
+          <%end%>
+        </div>
+
+      </div>
+    </footer>
+
+    <script>
       var propTabs = {
 
-        primer_encabezado: document.getElementById('encabezado').firstElementChild,
-        primer_contenido: document.getElementById('contenido').firstElementChild,
-        enlaces_encabezado: document.querySelectorAll('#encabezado li a'),
-        li_encabezado: document.querySelectorAll('#encabezado li'),
-        divs_contenido: document.querySelectorAll('#contenido > div'),
-        contenido_activo: null
+      primer_encabezado: document.getElementById('encabezado').firstElementChild,
+      primer_contenido: document.getElementById('contenido').firstElementChild,
+      enlaces_encabezado: document.querySelectorAll('#encabezado li a'),
+      li_encabezado: document.querySelectorAll('#encabezado li'),
+      divs_contenido: document.querySelectorAll('#contenido > div'),
+      contenido_activo: null
 
       }
 
-var metTabs = {
-      
-      inicio: function(){
-        propTabs.primer_encabezado.className = "active"; // tweets(encabezado)
-        propTabs.primer_contenido.className = "active"; // list_tweets
+      // Objeto con métodos de Tab
+      var metTabs = {
+        
+        inicio: function(){
+          propTabs.primer_encabezado.className = 'active';
+          propTabs.primer_contenido.className = 'active';
 
-        for (var i = 0; i < propTabs.enlaces_encabezado.length; i++) {
-          propTabs.enlaces_encabezado[i].addEventListener("click", metTabs.evento);
+          for (var i = 0; i < propTabs.enlaces_encabezado.length; i++) {
+            propTabs.enlaces_encabezado[i].addEventListener('click', metTabs.evento);
+          }
+        },
+
+        evento: function(e){
+          e.preventDefault();
+
+          for (var i = 0; i < propTabs.li_encabezado.length; i++) {
+            propTabs.li_encabezado[i].className = '';
+          }
+
+          for (var i = 0; i < propTabs.divs_contenido.length; i++) {
+            propTabs.divs_contenido[i].className = '';
+          }
+
+          this.parentElement.className = 'active';
+          propTabs.contenido_activo = this.getAttribute('href');
+          document.querySelector(propTabs.contenido_activo).className = 'active';
+          document.querySelector(propTabs.contenido_activo).style.opacity = 0;
+          setTimeout(function(){
+            document.querySelector(propTabs.contenido_activo).style.opacity = 1;
+          }, 100);
         }
-      },
 
-      evento: function(e){
-        e.preventDefault();
-
-        for (var i = 0; i < propTabs.li_encabezado.length; i++) {
-          propTabs.li_encabezado[i].className = "";
-        }
-
-        for (var i = 0; i < propTabs.divs_contenido.length; i++) {
-          propTabs.divs_contenido[i].className = "";
-        }
-
-        this.parentElement.className = "active";
-        propTabs.contenido_activo = this.getAttribute("href");
-        document.querySelector(propTabs.contenido_activo).className = "active";
-        document.querySelector(propTabs.contenido_activo).style.opacity = 0;
-        setTimeout(function(){
-          document.querySelector(propTabs.contenido_activo).style.opacity = 1;
-        }, 100);
       }
 
-    }
-    metTabs.inicio();
+      metTabs.inicio();
     </script>
+    
+    <script>
+      const navbarMenu = document.querySelector(".js-navbar-menu");
+      const navbar = document.querySelector(".navbar");
+      navbarMenu.addEventListener("click", () => navbar.classList.toggle("navbar--open"));
+    </script>
+    
   </body>
 </html>

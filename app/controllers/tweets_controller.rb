@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.all.sort_by(&:created_at).reverse!
+    @tweets = Tweet.all.select { |tweet| tweet.replied_to_id.nil? }.sort_by(&:created_at).reverse!
     @tweet_new = Tweet.new
     @tweets_of_current_user = Like.where(user_id: current_user.id).map(&:tweet) if current_user
   end
@@ -27,8 +27,10 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
+    @tweet.replied_to_id = params[:tweet_id] unless params[:tweet_id].nil?
+
     if @tweet.save
-      redirect_to @tweet, status: :ok
+      redirect_back_or_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +39,7 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1
   def update
     if @tweet.update(tweet_params)
-      redirect_to @tweet, notice: "Tweet was successfully updated."
+      redirect_to root_path, notice: "Tweet was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

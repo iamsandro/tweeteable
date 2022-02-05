@@ -1,9 +1,9 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <%= link_to "Log in", new_session_path(resource_name), class: "button button--secondary mb-4 mt-4" %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <% link_to "Sign up", new_registration_path(resource_name) %>
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -17,8 +17,8 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <div data-turbo="false">
-      <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post) do |f| %>
-        <% f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}", class: "g-signin2" %>
+      <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post, class: "flex flex-column gap-4 center") do |f| %>
+        <% f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}", class: "button button--secondary mb-4" %>
       <% end%>
     </div>
   <% end %>
