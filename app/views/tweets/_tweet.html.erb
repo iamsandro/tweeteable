@@ -1,5 +1,5 @@
-  <div class="tweet border-1">
-    <div class="">
+  <div class="card__tweet">
+    <div class="card__avatar">
       <% if tweet.user.avatar.attached? %>
         <%= link_to (image_tag tweet.user.avatar, class: "avatar"), user_path(tweet.user) %>
       <% else %>
@@ -7,31 +7,31 @@
       <% end %>
     </div>
 
-    <div id="<%= dom_id tweet %>" class="tweet__content">
+    <div id="<%= dom_id tweet %>" class="card__tweet--body">
       <div class="tweet__header">
-        <h4 class="content-m bold"><%= link_to (tweet.user.name), user_path(tweet.user) %></h4>
-        <span class="content-m color-secondary">@<%= link_to (tweet.user.username), user_path(tweet.user)  %></span>
-        <span class="content-s color-secondary"><%= time_ago_converter(time_ago_in_words(tweet.created_at)) %></span>
+        <h4 class="username"><%= link_to (tweet.user.name), user_path(tweet.user) %></h4>
+        <span class="name">@<%= link_to (tweet.user.username), user_path(tweet.user)  %></span>
+        <span class="time"><%= time_ago_converter(time_ago_in_words(tweet.created_at)) %></span>
       </div>
 
-      <p class="content-m color-black"><%= link_to (tweet.body), tweet_path(tweet) %> </p>
+      <p class="tweet_main"><%= link_to (tweet.body), tweet_path(tweet) %> </p>
 
-      <div class="tweet__footer">
-        <div class="flex gap-2 center-ver center-hor">
+      <div class="tweet__footer space-btw center-ver">
+        <div class="flex gap-2 center-ver">
           <%= image_tag "icon/cloud.svg" %>
           <span class="content-m color-secondary"><%= tweet.replies_count %></span>
           <% if current_user && (@tweets_of_current_user&.include? tweet) %>
             <%= button_to (image_tag "icon/loved_red.svg"), tweet_likes_path(tweet), class: "whithout_formate" %>
             <span class="content-m color-secondary"><%= tweet.likes_count %></span>
           <% else %>
-            <%= button_to (image_tag "icon/loved.svg"), tweet_likes_path(tweet), class: "whithout_formate" %>
+            <%= button_to (image_tag "icon/loved.svg"), tweet_likes_path(tweet), class: "whithout_formate flex center" %>
             <span class="content-m color-secondary"><%= tweet.likes_count %></span>
           <% end%>
         </div>
 
-        <div class="flex gap-2">
+        <div class="flex gap-2 center-ver">
           <%=link_to (image_tag "icon/trash.svg", class: "icon"), tweet_path(tweet), data: {turbo_method: :delete} %>
-          <%=link_to (image_tag "icon/edit.svg", class: "icon"), tweet_path(tweet) %>
+          <%=link_to (image_tag "icon/edit.svg", class: "icon"), edit_tweet_path(tweet) %>
         </div>
       </div>
     </div>

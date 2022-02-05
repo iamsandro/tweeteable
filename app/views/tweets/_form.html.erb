@@ -1,4 +1,4 @@
-<%= form_with(model: tweet) do |form| %>
+<%= form_with(model: tweet, class: "mb-4") do |form| %>
   <% if tweet.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body, cols: 25, rows: 8 %>
-  </div>
-
-  <div>
-    <%= form.submit "Edit", class: "button button--tweet"%>
+  <div class="text-center pd-2 bg-white mb-4">
+    <%= form_with model: @tweet, method: :patch, data: { turbo: "false" } do |f| %>
+      <div class="flex flex-column">
+        <%= f.text_area :body, placeholder: "Remember to thing before write...", id: "text_area"%>
+        <%= f.submit "Update", class: "button button--tweet align-end"%>
+      </div>
+    <%end%>
   </div>
 
 <% end %>

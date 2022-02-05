@@ -160,14 +160,42 @@
 
 }
 
+.upcase{
+  text-transform: uppercase;
+}
+
 .form-edit-tweet{
   width: 260px;
   height: 160px;
   border-radius: 8px;
+}
 
 .whithout_formate{
   border: none;
   background: none;
   text-decoration: none;
   cursor: pointer;
+}
+
+.flex-basis{
+  flex-basis: 360px;
+}
+.strech{
+  justify-content: stretch;
+}
+#text_area{
+  width: 100%;
+  box-shadow: 0 0 5px var(--primary-300);
+  border: none;
+  background: none;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  resize: none;
+}
+
+.align-end{
+  align-self: flex-end;
+  justify-self: flex-end;
 }

@@ -1,13 +1,27 @@
-.tweet{
+.card__tweet{
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
+  background-color: white;
+  height: fit-content;
+  box-shadow: 0px 0px 1px var(--secondary-text);
+  margin-bottom: 0.5rem;
 }
 
-.tweet__content{
+.card__avatar, .avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card__tweet--body{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  width: 100%;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
 }
 
 .tweet__header{
@@ -15,15 +29,50 @@
   gap: 0.5rem;
 }
 
-.tweet__footer{
-  display: flex;
-  justify-content: space-between;
+.card__tweet--body .username a{
+  font-weight: 700;
+  color: var(--primary-text);
 }
 
-.active{
-  /* color: var(--primary);   */
+.card__tweet--body .name a{
+  color: var(--secondary-text);
+}
+
+.card__tweet--body .time{
+  font-size: 0.875rem;
+  color: var(--secondary-text);
+}
+
+.tweet__main{
+  height: 31.875rem;
   color: black;
-  /* border-bottom: var(--primary) solid 2px; */
+}
+
+.tweet__footer{
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.625rem;
+  align-self: space-between;
+  justify-self: flex-end;
+}
+
+.form__tweet{
+  background-color: white;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  box-shadow: 0px 0px 1px var(--secondary-text);
+}
+
+.header_tweet, .header_title{
+  display: flex;
+  height: 4rem;
+}
+
+.text_area{
+  border: none;
+}
+.active{
+  border-bottom: var(--primary-500) solid 2px;
 }
 
 #contenido > div{
@@ -45,5 +94,10 @@
 }
 
 .active a{
-  color: var(--primary);
+  color: var(--gray-400);
+}
+
+.center {
+  place-content: center;
+  place-items: center;
 }

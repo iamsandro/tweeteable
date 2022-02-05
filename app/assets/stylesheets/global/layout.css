@@ -11,6 +11,11 @@
   margin: auto;
 }
 
+.container__sm {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
 .container-lg {
   max-width: 1024px;
   margin: auto;
@@ -21,7 +26,6 @@
   margin: auto;
 }
 
-.container-sign {
-  max-width: 260px;
-  margin: auto;
+.select{
+  width: 200px;
 }

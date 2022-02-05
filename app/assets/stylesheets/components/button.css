@@ -1,5 +1,5 @@
 .button {
-  border: 1px solid var(--primary);
+  border: 1px solid var(--primary-300);
   border-radius:1.5em;
   font-family: var(--font-primary);
   font-size: 1rem;
@@ -24,12 +24,12 @@
 /* Button Primary */
 .button--primary {
   background-color: white;
-  color: var(--primary);
+  color: var(--primary-300);
   
 }
 
 .button--primary:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--primary-300-hover);
   color: white;
 }
 
@@ -40,6 +40,7 @@
 
 /* Button Secondary */
 .button--secondary {
+  border: var(--secondary-300);
   background-color: var(--secondary-300);
   color: white;
 }
@@ -116,7 +117,7 @@
   width: 76px;
   height: 40px;
   color: white;
-  background-color: var(--primary);
+  background-color: var(--primary-300);
   border-radius: 100px;
   text-transform:capitalize
 }
