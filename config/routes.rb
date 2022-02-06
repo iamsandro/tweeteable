@@ -12,8 +12,22 @@ Rails.application.routes.draw do
 
   # <api>
   # GWT |POST /api/article GET | PUT | DELETE
-    namespace :api do
-      resources :tweets, except: %i[new edit]
+  namespace :api do
+    resources :users do
+      resources :tweets do
+        resources :tweets
+      end
     end
+    resources :tweets do
+      resources :tweets
+    end
+    resources :tweets, except: %i[new edit] do
+      resources :likes, only: :create
+    end
+    resources :likes, only: :destroy
+
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
+  end
 
 end

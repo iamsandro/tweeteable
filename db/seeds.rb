@@ -9,7 +9,7 @@ User.destroy_all
 
 puts "Seeding User"
 User.destroy_all
-User.create(username: "admin", name: "Admin", email: "admin@mail.com", password: "letmein", role: "admin")
+User.create(username: "admin", name: "Admin", email: "admin@mail.com", password: "supersecret", role: "admin")
 users = User.create([
   {username: "user1", name: "User1",email: "user1@mail.com", password: "letmein"},
   {username: "user2", name: "User2",email: "user2@mail.com", password: "letmein"},

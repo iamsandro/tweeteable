@@ -4,8 +4,7 @@ module Api
 
     # GET /tweets
     def index
-      @tweets = Tweet.all
-      render json: @tweets, status: :ok
+      render json: Tweet.all, status: :ok
     end
 
     # GET /tweets/1
@@ -16,7 +15,7 @@ module Api
     # POST /tweets
     # POST /users/:user_id/tweets
     def create
-      @tweet = Tweet.create(tweet_params)
+      @tweet = Tweet.create(body: tweet_params[:body], user_id: params[:user_id])
       @tweet.replied_to_id = params[:tweet_id] unless params[:tweet_id].nil?
 
       if @tweet.save

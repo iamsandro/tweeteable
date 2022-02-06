@@ -1,4 +1,4 @@
-<h2 class="heading text-center mb-4 items-center">Edit Profile</h2>
+<h2 class="heading text-center mb-4 items-center mt-4">Edit Profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "container-sign flex flex-column gap-4", data: { turbo: "false" } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -7,19 +7,10 @@
   <%= input_text(f, :username, resource, placeholder: "username") %>
   <%= input_text(f, :name, resource, placeholder: "username") %>
   <%= input_file(f, :avatar, resource, placeholder: "username") %>
+  <%= input_password(f, :password, resource, placeholder: "**********") %>
+  <%= input_password(f, :password, resource, placeholder: "**********") %>
+  <%= input_password(f, :current_password, resource, placeholder: "**********") %>
   
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
   <div class="actions">
     <%= f.submit "Submit", class: "button button--primary full-width"%>
   </div>
